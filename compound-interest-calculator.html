@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator - Cinta Bangga Paham Rupiah</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/compound-interest-calculator.css">
+    <link rel="icon" type="image/png" href="assets/images/logo-white.png">
+    
+</head>
+<body>
+    <!-- ==================== HEADER/NAVBAR ==================== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="assets/images/logo-white.png" alt="Logo Cinta Bangga Paham Rupiah" class="logo-img">
+                    <h1>Cinta Bangga Paham Rupiah</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Beranda</a></li>
+                    <li><a href="index.html#tentang">Tentang</a></li>
+                    <li><a href="index.html#materi">Materi</a></li>
+                    <li><a href="index.html#galeri">Galeri</a></li>
+                    <li><a href="index.html#kontak">Kontak</a></li>
+                </ul>
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu">
+                    <button class="hamburger-btn" id="hamburgerBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="index.html#sejarah">Sejarah Rupiah</a>
+                        <a href="index.html#merawat">Bagaimana Cara Merawat Rupiah</a>
+                        <a href="index.html#fungsi">Fungsi Rupiah</a>
+                        <a href="index.html#harga">Realtime Harga Rupiah</a>
+                        <a href="index.html#konverter">Konverter Mata Uang</a>
+                        <a href="investasi.html">Cara Menumbuhkan Uang</a>
+                        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+        <!-- [HERO IMAGE] GANTI GAMBAR INI DENGAN GAMBAR TENTANG FINANCE/CALCULATOR (1920x600px) -->
+        <img src="assets/images/hero-banner.jpg" alt="Calculator Hero" class="hero-image">
+        <div class="hero-content">
+            <h2>Compound Interest Calculator</h2>
+            <p>Hitung pertumbuhan uang Anda dengan konsep bunga majemuk yang powerful</p>
+        </div>
+    </section>
+
+    <!-- ==================== CALCULATOR SECTION ==================== -->
+    <section class="calculator-container">
+        <div class="calc-wrapper">
+            <h2 class="section-title">Kalkulator Bunga Majemuk</h2>
+            
+            <div class="calculator-grid">
+                <!-- INPUT SECTION -->
+                <div class="calc-input-section">
+                    <h3 style="color: #3A2E29; margin-bottom: 25px;">📊 Input Data</h3>
+
+                    <!-- Modal Awal / Principal Amount -->
+                    <div class="input-group">
+                        <label for="principal">Modal Awal (Rp)</label>
+                        <input type="number" id="principal" placeholder="Contoh: 10000000" value="10000000" min="0" step="100000">
+                        <div class="input-hint">Jumlah uang yang Anda investasikan di awal</div>
+                    </div>
+
+                    <!-- Kontribusi Bulanan -->
+                    <div class="input-group">
+                        <label for="monthlyContribution">Kontribusi Bulanan (Rp)</label>
+                        <input type="number" id="monthlyContribution" placeholder="Contoh: 500000" value="500000" min="0" step="50000">
+                        <div class="input-hint">Jumlah yang Anda tambahkan setiap bulan</div>
+                    </div>
+
+                    <!-- Suku Bunga Tahunan -->
+                    <div class="input-group">
+                        <label for="annualRate">Suku Bunga Tahunan (%)</label>
+                        <input type="number" id="annualRate" placeholder="Contoh: 10" value="10" min="0" max="100" step="0.1">
+                        <div class="input-hint">Rata-rata return tahunan dari investasi Anda</div>
+                        
+                        <div class="slider-container">
+                            <input type="range" id="rateSlider" class="slider" min="0" max="50" value="10" step="0.5">
+                            <small style="color: #888;">Drag slider untuk mengubah suku bunga</small>
+                        </div>
+                    </div>
+
+                    <!-- Jangka Waktu -->
+                    <div class="input-group">
+                        <label for="years">Jangka Waktu (Tahun)</label>
+                        <input type="number" id="years" placeholder="Contoh: 20" value="20" min="1" max="100" step="1">
+                        <div class="input-hint">Berapa lama Anda akan menginvestasikan uang</div>
+                        
+                        <div class="slider-container">
+                            <input type="range" id="yearsSlider" class="slider" min="1" max="50" value="20" step="1">
+                            <small style="color: #888;">Drag slider untuk mengubah tahun</small>
+                        </div>
+                    </div>
+
+                    <!-- Frekuensi Compound -->
+                    <div class="input-group">
+                        <label for="compoundFrequency">Frekuensi Compound</label>
+                        <select id="compoundFrequency">
+                            <option value="1">Tahunan</option>
+                            <option value="2">Semi-tahunan</option>
+                            <option value="4">Kuartalan</option>
+                            <option value="12" selected>Bulanan</option>
+                            <option value="365">Harian</option>
+                            <option value="continuous">Continuous</option>
+                        </select>
+                        <div class="input-hint">Seberapa sering bunga dihitung dan ditambahkan</div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="calc-buttons">
+                        <button class="calc-btn" id="calculateBtn">💰 Hitung</button>
+                        <button class="reset-btn" id="resetBtn">↻ Reset</button>
+                    </div>
+                </div>
+
+                <!-- RESULT SECTION -->
+                <div class="calc-result-section">
+                    <h3 style="margin-bottom: 25px;">📈 Hasil Perhitungan</h3>
+
+                    <!-- Total Amount -->
+                    <div class="input-group">
+                        <label>Total Akhir</label>
+                        <div class="result-value" id="totalAmount">Rp 0</div>
+                    </div>
+
+                    <!-- Breakdown -->
+                    <div class="result-breakdown">
+                        <div class="breakdown-item">
+                            <span>Modal Awal:</span>
+                            <strong id="breakdownPrincipal">Rp 0</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Total Kontribusi:</span>
+                            <strong id="breakdownContribution">Rp 0</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Keuntungan (Interest):</span>
+                            <strong id="breakdownInterest">Rp 0</strong>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Total Input:</span>
+                            <strong id="breakdownTotalInput">Rp 0</strong>
+                        </div>
+                    </div>
+
+                    <!-- Percentage -->
+                    <div style="background-color: rgba(248, 193, 7, 0.15); padding: 15px; border-radius: 5px; margin-top: 20px; text-align: center;">
+                        <small>Keuntungan</small>
+                        <div style="font-size: 1.5rem; color: #ffc107; font-weight: 600;" id="profitPercentage">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- [PLACEHOLDER] Chart Section -->
+            <div style="margin: 40px 0;">
+                <div class="chart-placeholder">
+                    [GANTI BAGIAN INI] Tambahkan grafik/chart untuk visualisasi pertumbuhan investasi dari waktu ke waktu.
+                    Gunakan library seperti Chart.js atau Canvas untuk membuat chart yang menarik.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EXPLANATION SECTION ==================== -->
+    <section class="calculator-container">
+        <div class="calc-wrapper">
+            <h2 class="section-title">Memahami Compound Interest</h2>
+
+            <div class="info-section">
+                <h3>🎯 Apa Itu Compound Interest?</h3>
+                <p>
+                    Compound Interest (bunga majemuk) adalah "bunga atas bunga". Ketika Anda berinvestasi, uang Anda menghasilkan keuntungan. 
+                    Keuntungan tersebut kemudian juga menghasilkan keuntungan, dan seterusnya. Ini menciptakan efek bola salju yang menguntungkan.
+                </p>
+                <p>
+                    Misalnya, jika Anda menginvestasikan Rp 10 juta dengan return 10% per tahun:
+                </p>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li>Tahun 1: Rp 10 juta → Keuntungan Rp 1 juta → Total Rp 11 juta</li>
+                    <li>Tahun 2: Rp 11 juta → Keuntungan Rp 1,1 juta → Total Rp 12,1 juta</li>
+                    <li>Tahun 3: Rp 12,1 juta → Keuntungan Rp 1,21 juta → Total Rp 13,31 juta</li>
+                </ul>
+                <p style="margin-top: 20px;">
+                    Lihat? Seiring waktu, keuntungan Anda meningkat karena keuntungan sebelumnya juga turut menghasilkan keuntungan baru!
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h3>📐 Rumus Compound Interest</h3>
+                <div class="formula-box">
+                    <strong>A = P(1 + r/n)^(nt)</strong><br><br>
+                    Dimana:<br>
+                    • <strong>A</strong> = Jumlah akhir<br>
+                    • <strong>P</strong> = Modal awal (Principal)<br>
+                    • <strong>r</strong> = Suku bunga tahunan (dalam desimal)<br>
+                    • <strong>n</strong> = Frekuensi compound per tahun<br>
+                    • <strong>t</strong> = Jangka waktu dalam tahun<br>
+                </div>
+
+                
+            </div>
+
+            <div class="info-section">
+                <h3>💡 Faktor-Faktor yang Mempengaruhi Compound Interest</h3>
+                
+                <div style="margin: 20px 0;">
+                    <h4>1. 📅 Waktu (Time)</h4>
+                    <p>Semakin lama investasi, semakin besar efek compound interest. Ini alasan mengapa penting untuk mulai investasi sedini mungkin.</p>
+                    <div class="tip-box">
+                        <strong>💡 Tips:</strong> Menginvestasikan Rp 1 juta di usia 25 tahun bisa lebih menguntungkan daripada menginvestasikan Rp 10 juta di usia 35 tahun!
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>2. 📊 Suku Bunga (Interest Rate)</h4>
+                    <p>Perbedaan kecil dalam suku bunga bisa menghasilkan perbedaan BESAR dalam hasil akhir seiring waktu.</p>
+                    <div class="tip-box">
+                        <strong>💡 Tips:</strong> Investasi dengan return 12% vs 10% per tahun bisa menghasilkan perbedaan jutaan rupiah dalam 20 tahun!
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>3. 💰 Modal Awal (Principal)</h4>
+                    <p>Semakin besar modal awal, semakin besar "fondasi" untuk compound interest bekerja.</p>
+                    <div class="tip-box">
+                        <strong>💡 Tips:</strong> Modal awal yang lebih besar tidak hanya menghasilkan lebih banyak, tetapi perbedaannya juga terus membesar seiring waktu.
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>4. 🔄 Frekuensi Compound (Compounding Frequency)</h4>
+                    <p>Semakin sering bunga dihitung dan ditambahkan, semakin besar efek compound interest.</p>
+                    <p><span class="highlight">Continuous compounding</span> memberikan hasil terbaik, tetapi perbedaannya tidak selalu signifikan dibanding compounding bulanan.</p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>5. 💵 Kontribusi Berkala (Regular Contributions)</h4>
+                    <p>Menambahkan uang secara teratur (misalnya Rp 500rb per bulan) mempercepat pertumbuhan investasi Anda secara dramatis.</p>
+                    <div class="tip-box">
+                        <strong>💡 Tips:</strong> Dollar Cost Averaging (DCA) - menambah investasi secara konsisten setiap bulan - adalah strategi yang sangat powerful!
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>📊 Perbandingan Skenario Investasi</h3>
+                <div class="placeholder">
+                    [GANTI BAGIAN INI] Buat perbandingan tabel dengan berbagai skenario investasi untuk menunjukkan perbedaan hasil berdasarkan faktor-faktor berbeda.
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Skenario</th>
+                            <th>Modal Awal</th>
+                            <th>Return/Tahun</th>
+                            <th>Tahun</th>
+                            <th>Total Akhir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Konservatif (Deposito)</td>
+                            <td>Rp 10 juta</td>
+                            <td>4%</td>
+                            <td>20</td>
+                            <td>Rp ~22 juta</td>
+                        </tr>
+                        <tr>
+                            <td>Sedang (Reksadana Balanced)</td>
+                            <td>Rp 10 juta</td>
+                            <td>8%</td>
+                            <td>20</td>
+                            <td>Rp ~49 juta</td>
+                        </tr>
+                        <tr>
+                            <td>Agresif (Saham)</td>
+                            <td>Rp 10 juta</td>
+                            <td>12%</td>
+                            <td>20</td>
+                            <td>Rp ~97 juta</td>
+                        </tr>
+                        <tr>
+                            <td>Dengan Kontribusi Bulanan</td>
+                            <td>Rp 10 juta + Rp 500k/bulan</td>
+                            <td>10%</td>
+                            <td>20</td>
+                            <td>Rp ~276 juta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-section">
+                <h3>⚠️ Hal-Hal Penting yang Perlu Diperhatikan</h3>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Pajak dan Biaya</strong><br>
+                    Hasil perhitungan di atas belum memperhitungkan pajak dan biaya-biaya investasi yang bisa mengurangi return Anda. 
+                    Pastikan Anda memahami struktur biaya investasi Anda.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Inflasi</strong><br>
+                    Return 10% per tahun terdengar bagus, tetapi jika inflasi 5% per tahun, real return Anda hanya 5%. 
+                    Saat menginvestasikan, pertimbangkan tingkat inflasi.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Risiko Investasi</strong><br>
+                    Return yang lebih tinggi selalu datang dengan risiko yang lebih tinggi. Saham bisa memberikan return 12%, 
+                    tetapi juga bisa negatif dalam tahun tertentu. Pahami risk tolerance Anda.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Asumsi Konstan</strong><br>
+                    Kalkulator ini mengasumsikan return yang konsisten setiap tahun. Pada kenyataannya, return berfluktuasi. 
+                    Gunakan hasil ini sebagai estimasi, bukan jaminan.
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>🎓 Strategi untuk Memaksimalkan Compound Interest</h3>
+                
+                <div style="margin: 20px 0;">
+                    <h4>✅ 1. Mulai Sedini Mungkin</h4>
+                    <p>
+                        Waktu adalah aset terbesar Anda dalam compound interest. Setiap tahun yang terlewatkan adalah 
+                        pertumbuhan eksponensial yang hilang. Jangan tunda lagi, mulai hari ini!
+                    </p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>✅ 2. Investasi Teratur dan Konsisten</h4>
+                    <p>
+                        Alih-alih menunggu untuk mendapatkan jumlah besar, investasikan sedikit demi sedikit setiap bulan. 
+                        Ini membantu Anda memanfaatkan DCA dan membuat kebiasaan investasi.
+                    </p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>✅ 3. Maksimalkan Return (dengan Bijak)</h4>
+                    <p>
+                        Cari investasi dengan return yang lebih tinggi sesuai dengan risk tolerance Anda. 
+                        Perbedaan 2% per tahun bisa sangat signifikan dalam jangka panjang.
+                    </p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>✅ 4. Reinvest Semua Keuntungan</h4>
+                    <p>
+                        Jangan ambil keuntungan Anda untuk dihabiskan. Reinvest semuanya agar efek compound interest maksimal.
+                    </p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>✅ 5. Hindari Penarikan Uang</h4>
+                    <p>
+                        Setiap kali Anda menarik uang dari investasi, Anda mengurangi principal yang akan di-compound. 
+                        Hindari penarikan jika memungkinkan.
+                    </p>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <h4>✅ 6. Pantau dan Rebalance Portfolio</h4>
+                    <p>
+                        Tinjau investasi Anda secara berkala dan pastikan tetap sesuai dengan target Anda. 
+                        Rebalance jika diperlukan untuk menjaga risk profile.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>🧮 Contoh Kasus Nyata</h3>
+                <div class="placeholder">
+                    [GANTI BAGIAN INI] Berikan 2-3 contoh kasus nyata dengan skenario berbeda:
+                    - Kasus 1: Mulai muda vs mulai tua
+                    - Kasus 2: Dengan kontribusi reguler vs tanpa
+                    - Kasus 3: Return berbeda dan dampaknya
+                </div>
+
+                <h4 style="margin-top: 20px;">Contoh: Dua Investor, Hasil Berbeda</h4>
+                <p>
+                    <strong>Budi (Mulai Investasi Umur 25 tahun):</strong><br>
+                    • Modal: Rp 10 juta, Kontribusi: Rp 500rb/bulan<br>
+                    • Return 10% per tahun selama 40 tahun (hingga usia 65)<br>
+                    • Total Input: Rp 10 juta + (Rp 500rb × 480 bulan) = Rp 250 juta<br>
+                    • Total Akhir: Rp ~1.2 Miliar (Keuntungan: Rp 950 juta)
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Andi (Mulai Investasi Umur 35 tahun):</strong><br>
+                    • Modal: Rp 50 juta, Kontribusi: Rp 1 juta/bulan<br>
+                    • Return 10% per tahun selama 30 tahun (hingga usia 65)<br>
+                    • Total Input: Rp 50 juta + (Rp 1 juta × 360 bulan) = Rp 410 juta<br>
+                    • Total Akhir: Rp ~540 juta (Keuntungan: Rp 130 juta)
+                </p>
+                <p style="margin-top: 15px; background: #fff3cd; padding: 15px; border-radius: 5px;">
+                    <strong>Kesimpulan:</strong> Meskipun Andi menginvestasikan lebih banyak uang, 
+                    Budi (yang mulai lebih muda dengan kontribusi lebih kecil) akhirnya mendapat hasil lebih besar! 
+                    Ini adalah kekuatan time value dan compound interest.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Cinta Bangga Paham Rupiah. Semua hak dilindungi. | 
+            <a href="#">Kebijakan Privasi</a> | 
+            <a href="#">Syarat Penggunaan</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Compound Interest Calculator Logic
+        
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function calculateCompoundInterest() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+            const years = parseFloat(document.getElementById('years').value) || 0;
+            const compoundFrequency = document.getElementById('compoundFrequency').value;
+
+            let totalAmount = principal;
+            const rateDecimal = annualRate / 100;
+            let frequency = compoundFrequency === 'continuous' ? 365 : parseFloat(compoundFrequency);
+
+            // Calculate compound interest for principal only (for simplicity in basic calculation)
+            if (compoundFrequency === 'continuous') {
+                totalAmount = principal * Math.exp(rateDecimal * years);
+            } else {
+                totalAmount = principal * Math.pow(1 + rateDecimal / frequency, frequency * years);
+            }
+
+            // Add monthly contributions
+            const monthlyRate = rateDecimal / 12;
+            const numMonths = years * 12;
+            const totalContributions = monthlyContribution * numMonths;
+            
+            // Future value of annuity (monthly contributions)
+            const fvAnnuity = monthlyContribution * (Math.pow(1 + monthlyRate, numMonths) - 1) / monthlyRate;
+            
+            totalAmount += fvAnnuity;
+
+            const totalInput = principal + totalContributions;
+            const totalInterest = totalAmount - totalInput;
+            const profitPercentage = totalInput > 0 ? (totalInterest / totalInput * 100).toFixed(2) : 0;
+
+            // Update display
+            document.getElementById('totalAmount').textContent = formatCurrency(totalAmount);
+            document.getElementById('breakdownPrincipal').textContent = formatCurrency(principal);
+            document.getElementById('breakdownContribution').textContent = formatCurrency(totalContributions);
+            document.getElementById('breakdownInterest').textContent = formatCurrency(totalInterest);
+            document.getElementById('breakdownTotalInput').textContent = formatCurrency(totalInput);
+            document.getElementById('profitPercentage').textContent = profitPercentage + '%';
+        }
+
+        // Event listeners
+        document.getElementById('calculateBtn').addEventListener('click', calculateCompoundInterest);
+        
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('principal').value = 10000000;
+            document.getElementById('monthlyContribution').value = 500000;
+            document.getElementById('annualRate').value = 10;
+            document.getElementById('years').value = 20;
+            document.getElementById('rateSlider').value = 10;
+            document.getElementById('yearsSlider').value = 20;
+            document.getElementById('compoundFrequency').value = 12;
+            
+            document.getElementById('totalAmount').textContent = 'Rp 0';
+            document.getElementById('breakdownPrincipal').textContent = 'Rp 0';
+            document.getElementById('breakdownContribution').textContent = 'Rp 0';
+            document.getElementById('breakdownInterest').textContent = 'Rp 0';
+            document.getElementById('breakdownTotalInput').textContent = 'Rp 0';
+            document.getElementById('profitPercentage').textContent = '0%';
+        });
+
+        // Slider synchronization
+        document.getElementById('rateSlider').addEventListener('input', function() {
+            document.getElementById('annualRate').value = this.value;
+        });
+
+        document.getElementById('annualRate').addEventListener('input', function() {
+            document.getElementById('rateSlider').value = this.value;
+        });
+
+        document.getElementById('yearsSlider').addEventListener('input', function() {
+            document.getElementById('years').value = this.value;
+        });
+
+        document.getElementById('years').addEventListener('input', function() {
+            document.getElementById('yearsSlider').value = this.value;
+        });
+
+        // Auto calculate on input
+        ['principal', 'monthlyContribution', 'annualRate', 'years', 'compoundFrequency', 'rateSlider', 'yearsSlider'].forEach(id => {
+            document.getElementById(id).addEventListener('change', calculateCompoundInterest);
+            document.getElementById(id).addEventListener('input', function() {
+                // Optional: calculate in real-time as user types
+                // calculateCompoundInterest();
+            });
+        });
+
+        // Initial calculation
+        calculateCompoundInterest();
+    </script>
+</body>
+</html>
